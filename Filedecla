@@ -34,6 +34,7 @@ stage('Deploy'){
 steps{
 sshagent(['AWS_Cred']) {
 sh "ssh -o StrictHostKeyChecking=no ubuntu@13.201.78.111 docker rm -f java-web* || true"
+sh "ssh -o StrictHostKeyChecking=no ubuntu@13.201.78.111 docker run -d --name jave-app -p 8060:8080 vemana09/java-web-dec:${BUILD_NUMBER}"
 }
 }
 }
