@@ -12,4 +12,10 @@ sh "${mavenHome}/bin/mvn clean package"
 stage('Docker build'){
 sh "docker build -t vemana09/java-web:${build} ."
 }
+stage('Docker login & push'){
+withCredentials([string(credentialsId: '7116d20f-7284-427a-a09b-e45f8c3cb063', variable: 'credentials')]) {
+sh "docker login -u vemana09 -p ${credentials}"
+}
+sh "docker push vemana09/java-web:${build}"
+}
 }//node closing
