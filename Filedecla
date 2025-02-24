@@ -2,12 +2,19 @@ pipeline{
 
 agent any 
 
+tools{
+maven 'maven3.9.9'
+}
 stages{
 stage('Github'){
 steps{
 git branch: 'docker', credentialsId: '563499a6-b9cf-47ed-abda-6f2ad570b390', url: 'https://github.com/vemainno/java-app-docker.git'
 }
 }
-
+stage('Maven clean'){
+steps{
+sh "mvn clean package"
+}
+}
 }//stages closing
 }//pipeline closing
