@@ -22,5 +22,13 @@ steps{
 sh "docker build -t vemana09/java-web-dec:${BUILD_NUMBER} ."
 }
 }
+stage('Docker login & push'){
+steps{
+withCredentials([string(credentialsId: 'd454ce5a-9b41-4bc7-9c82-521b9a681953', variable: 'docker_cred')]) {
+sh "docker login -u vemana09 -p ${docker_cred}"
+}
+}
+sh "docker push vemana09/java-web-dec:${BUILD_NUMBER}"
+}
 }//stages closing
 }//pipeline closing
