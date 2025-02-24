@@ -24,5 +24,4 @@ sh "ssh -O StrictHostKeyChecking=no ubuntu@3.110.217.173 docker rmi -f java-web*
 }
 }
 
-}
 }//node closing
