@@ -18,4 +18,11 @@ sh "docker login -u vemana09 -p ${credentials}"
 }
 sh "docker push vemana09/java-web:${build}"
 }
+stage('Deploy to AWS'){
+sshagent(['562ccf02-ad83-4c05-9c40-0cedd8b45ed6']) {
+sh "ssh -O StrictHostKeyChecking=no ubuntu@3.110.217.173 docker rmi -f java-web* || true "
+}
+}
+
+}
 }//node closing
