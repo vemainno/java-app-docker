@@ -30,5 +30,12 @@ sh "docker login -u vemana09 -p ${docker_cred}"
 sh "docker push vemana09/java-web-dec:${BUILD_NUMBER}"
 }
 }
+stage('Deploy'){
+steps{
+sshagent(['AWS_Cred']) {
+sh "ssh -o StrictHostKeyChecking=no ubuntu@13.201.78.111 docker rm -f java-web* || true"
+}
+}
+}
 }//stages closing
 }//pipeline closing
