@@ -22,6 +22,7 @@ stage('Deploy to AWS'){
 sshagent(['docker_aws']) {
 sh "ssh -o StrictHostKeyChecking=no ubuntu@3.110.217.173 docker rm -f java-web* || true "
 }
+sh "ssh -o StrictHostKeyChecking=no ubuntu@3.110.217.173 docker run -d -p 8070:8080 --name jave1 vemana09/java-web:${build}"
 }
 
 }//node closing
