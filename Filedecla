@@ -5,6 +5,7 @@ agent any
 tools{
 maven 'maven3.9.9'
 }
+
 stages{
 stage('Github'){
 steps{
@@ -14,6 +15,11 @@ git branch: 'docker', credentialsId: '563499a6-b9cf-47ed-abda-6f2ad570b390', url
 stage('Maven clean'){
 steps{
 sh "mvn clean package"
+}
+}
+stage('docker build'){
+steps{
+sh "docker build -t vemana09/java-web-dec:${BUILD_NUMBER} ."
 }
 }
 }//stages closing
